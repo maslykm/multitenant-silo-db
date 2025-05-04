@@ -1,0 +1,30 @@
+volumes:
+  postgres_data:
+  pgadmin_data:
+
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_MULTIPLEDATABASES: control,tenant1,tenant2,tenant3
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: postgres
+      PGADMIN_DISABLE_POSTFIX: "yes"
+      PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED: "False"
+      PGADMIN_CONFIG_SERVER_MODE: "False"
+    ports:
+      - 5433:80
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+
+  

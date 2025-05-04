@@ -1,0 +1,16 @@
+@App_HostAddress = http://localhost:5084
+
+GET {{App_HostAddress}}/invoices/
+X-Tenant-Id: Tenant1
+Accept: application/json
+
+###
+
+POST {{App_HostAddress}}/invoices/
+X-Tenant-Id: Tenant1
+Accept: application/json
+
+{
+}
+
+###
